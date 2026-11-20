@@ -1,0 +1,26 @@
+Jet Blast for X-Plane 12 - Freeware License
+
+Copyright (c) 2026 enimri. All rights reserved.
+
+1. Free use. You may download, install and use Jet Blast free of charge,
+   for personal and non-commercial flight simulation.
+
+2. Sharing. You may share the official download link
+   (https://github.com/enimri/xplane-jet-blast-releases). You may not
+   re-upload, sell, bundle or redistribute the plugin files elsewhere
+   without written permission from the author.
+
+3. No modification. You may edit the included settings files
+   (jetblast.ini, jetblast_types.csv) for your own use. You may not modify,
+   decompile, disassemble or reverse engineer the plugin binary
+   (JetBlast.xpl).
+
+4. Source code. The source code is not published and is not licensed to you.
+
+5. No warranty. Jet Blast is provided "as is", without warranty of any kind,
+   express or implied. The author is not liable for any damage, data loss or
+   other harm arising from its use. Jet Blast is for flight simulation only
+   and must never be used for real-world aviation.
+
+6. X-Plane is a trademark of Laminar Research. Jet Blast is not affiliated
+   with or endorsed by Laminar Research, VATSIM, IVAO or LiveTraffic.
