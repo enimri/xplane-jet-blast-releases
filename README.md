@@ -14,6 +14,7 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 - Built-in engine data for about 100 aircraft types, from the C172 to the A380, including props and rear-engine jets.
 - Blast that hugs the ground, with random gusts.
 - Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots.
+- Settings window inside X-Plane, a one-click bug report, and an update check.
 
 ## Install
 1. Download `JetBlast-vX.Y.Z.zip` from [Releases](https://github.com/enimri/xplane-jet-blast-releases/releases).
@@ -36,7 +37,9 @@ xattr -dr com.apple.quarantine "/Applications/X-Plane 12/Resources/plugins/JetBl
 ```
 
 ## Settings
-Edit `jetblast.ini`, then choose **Plugins ▸ Jet Blast ▸ Reload settings**.
+Open **Plugins ▸ Jet Blast ▸ Settings...** in X-Plane. Click **−** / **+** or **ON/OFF** to change a setting; it takes effect immediately. Click **Save** to keep it for next time.
+
+You can also edit `jetblast.ini` directly, then choose **Plugins ▸ Jet Blast ▸ Reload settings**.
 
 | Setting | What it does |
 |---|---|
@@ -45,7 +48,11 @@ Edit `jetblast.ini`, then choose **Plugins ▸ Jet Blast ▸ Reload settings**.
 | `gustiness` | How much the blast gusts (0 = steady) |
 | `max_range_m` | Ignore traffic farther away than this |
 | `include_xplane_ai` | Also use X-Plane's own AI traffic |
-| `user_span_m`, `user_length_m` | Your aircraft size if auto-detection is wrong (0 = auto) |
+| `user_span_m`, `user_length_m` | Your aircraft size if auto-detection is wrong (0 = auto, ini file only) |
+| `check_updates` | Check for a newer Jet Blast version when X-Plane starts |
+
+## Updates
+When X-Plane starts, Jet Blast asks GitHub once whether a newer version exists. If there is one, the menu changes to **Jet Blast (update available)** and the Settings window shows where to download it. Nothing is installed automatically. The check sends no personal data; turn it off in Settings or with `check_updates = 0`.
 
 Add or fix aircraft types in `jetblast_types.csv`. The format is explained inside the file.
 
@@ -55,7 +62,7 @@ Add or fix aircraft types in `jetblast_types.csv`. The format is explained insid
 - The macOS and Linux versions are new and have only been build-tested so far. Reports from Mac and Linux users are especially welcome.
 
 ## Problems or ideas?
-Open an [issue](https://github.com/enimri/xplane-jet-blast-releases/issues). Include the lines starting with `JetBlast:` from `X-Plane 12\Log.txt`.
+Choose **Plugins ▸ Jet Blast ▸ Copy bug report** right after the problem happens. Then paste the report into an [issue](https://github.com/enimri/xplane-jet-blast-releases/issues) or a reply in the forum thread. It contains your Jet Blast version and settings, your aircraft type, the traffic around you and recent Jet Blast log lines. It never includes your name, account, location or files. The same report is also saved as `jetblast_bugreport.txt` in the plugin folder.
 
 ## License
 Freeware: free to download and use, closed source. See [LICENSE.txt](LICENSE.txt).
