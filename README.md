@@ -16,16 +16,24 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 - Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots.
 
 ## Install
-1. Download `JetBlast-vX.Y.Z-win_x64.zip` from [Releases](https://github.com/enimri/xplane-jet-blast-releases/releases).
-2. Unzip it into `X-Plane 12\Resources\plugins\`, so you get:
+1. Download `JetBlast-vX.Y.Z.zip` from [Releases](https://github.com/enimri/xplane-jet-blast-releases/releases).
+2. Unzip it into `X-Plane 12/Resources/plugins/`, so you get:
    ```
-   plugins\JetBlast\win_x64\JetBlast.xpl
-   plugins\JetBlast\jetblast.ini
-   plugins\JetBlast\jetblast_types.csv
+   plugins/JetBlast/win_x64/JetBlast.xpl   (Windows)
+   plugins/JetBlast/mac_x64/JetBlast.xpl   (macOS, Intel and Apple Silicon)
+   plugins/JetBlast/lin_x64/JetBlast.xpl   (Linux)
+   plugins/JetBlast/jetblast.ini
+   plugins/JetBlast/jetblast_types.csv
    ```
+   X-Plane picks the right one for your system automatically.
 3. Start X-Plane 12. The menu is **Plugins ▸ Jet Blast**.
 
-Requirements: X-Plane 12, Windows 64-bit. Nothing else needs installing.
+Requirements: X-Plane 12 on Windows 64-bit, macOS 11 or newer, or 64-bit Linux. Nothing else needs installing.
+
+**macOS:** the plugin isn't signed with a paid Apple certificate, so macOS may block it the first time. If X-Plane says the plugin couldn't load, open Terminal and run this once (adjust the path to your X-Plane folder):
+```
+xattr -dr com.apple.quarantine "/Applications/X-Plane 12/Resources/plugins/JetBlast"
+```
 
 ## Settings
 Edit `jetblast.ini`, then choose **Plugins ▸ Jet Blast ▸ Reload settings**.
@@ -44,6 +52,7 @@ Add or fix aircraft types in `jetblast_types.csv`. The format is explained insid
 ## Known limitations
 - Networks don't send engine data, so thrust is estimated from motion. A static run-up on the brakes isn't detected unless the traffic source sends throttle data.
 - Blast affects your aircraft only. Other traffic isn't pushed.
+- The macOS and Linux versions are new and have only been build-tested so far. Reports from Mac and Linux users are especially welcome.
 
 ## Problems or ideas?
 Open an [issue](https://github.com/enimri/xplane-jet-blast-releases/issues). Include the lines starting with `JetBlast:` from `X-Plane 12\Log.txt`.
