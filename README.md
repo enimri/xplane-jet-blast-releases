@@ -1,5 +1,7 @@
 # Jet Blast for X-Plane 12
 
+![Jet Blast: modelled blast behind a 737-800 at takeoff thrust](images/jetblast-cover.png)
+
 Jet blast and prop wash from **online and plugin traffic**: VATSIM and IVAO (through xPilot or swift), LiveTraffic, and anything else that uses X-Plane's TCAS traffic API.
 
 X-Plane 12 already gives this traffic a wake in the air, but nothing comes out of its engines on the ground. With Jet Blast, if you taxi or line up too close behind an aircraft that's breaking away or taking off, its exhaust pushes your aircraft sideways, rolls it and swings it around.
