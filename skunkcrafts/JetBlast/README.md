@@ -9,6 +9,8 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 ## Features
 - Works with any traffic shown through the TCAS API. X-Plane's own AI aircraft are included too (you can turn that off).
 - Thrust is estimated from each aircraft's motion: idle, breakaway, takeoff, reverse thrust after landing, and engines off when the beacon is off.
+- **With LiveTraffic**, its real flight phase is used instead (take-off roll, landing roll with reversers...), so blast starts and stops at the right moment.
+- **Settings per aircraft:** for example full blast in the C172, gentle in the A320, switched automatically when you load the aircraft.
 - Engine data for 410 aircraft types, from the C172 to the A380, including props, rear-engine jets, bizjets and military types. The list updates itself from GitHub, so new types arrive without a new plugin version.
 - Jet blast reach calibrated against ICAO published distances (see *Accuracy* below).
 - One-click presets: **Realistic**, **Gentle**, **Event mode** for crowded VATSIM/IVAO events, and **Off**.
@@ -37,7 +39,13 @@ xattr -dr com.apple.quarantine "/Applications/X-Plane 12/Resources/plugins/JetBl
 ```
 
 ## Settings
-Open **Plugins ▸ Jet Blast ▸ Settings...** in X-Plane. Click **−** / **+** or **ON/OFF** to change a setting; it takes effect immediately. Click **Save** to keep it for next time.
+Open **Plugins ▸ Jet Blast ▸ Settings...** in X-Plane. Click **−** / **+** or **ON/OFF** to change a setting; it takes effect immediately. Then keep it:
+
+- **Save for this aircraft:** used automatically whenever you fly this aircraft, for example full blast in the C172 and Gentle in the A320.
+- **Save as default:** used for every aircraft that has no settings of its own.
+- **Use default settings** (shown when the aircraft has its own): forget this aircraft's settings.
+
+The window shows which settings are active. Per-aircraft settings cover strength, blast reach, gustiness, range, the idle-traffic filter and your aircraft's size. Everything else is the same for all aircraft. They're stored in `jetblast_profiles.ini`, one section per aircraft. Updates never touch that file.
 
 **Presets** (top row of the Settings window):
 
@@ -62,6 +70,16 @@ You can also edit `jetblast.ini` directly, then choose **Plugins ▸ Jet Blast �
 | `include_xplane_ai` | Also use X-Plane's own AI traffic |
 | `user_span_m`, `user_length_m` | Your aircraft size if auto-detection is wrong (0 = auto, ini file only) |
 | `check_updates` | Check for a newer Jet Blast version when X-Plane starts |
+| `use_livetraffic` | Use LiveTraffic's flight phase for its aircraft (1 = on) |
+
+## LiveTraffic
+If [LiveTraffic](https://forums.x-plane.org/files/file/49749-livetraffic/) is running, Jet Blast reads each aircraft's flight phase from it: parked, taxi, take-off roll, climb, approach, landing roll, plus how far the reversers are open. That replaces the guess from motion:
+
+- **Take-off blast starts as the roll begins**, not seconds later once the aircraft has visibly sped up.
+- **Reverse thrust after landing** is picked up from the reversers, so the blast is thrown forward during the roll-out.
+- **Taxiing aircraft** never produce take-off blast.
+
+The debug window marks these aircraft with **LT**. No setup is needed; turn it off with *Use LiveTraffic flight phase* in Settings. Online-network traffic (VATSIM/IVAO) doesn't publish flight phases, so it keeps the motion-based estimate.
 
 ## Updates
 **With SkunkCrafts Updater (easiest):** if you use the [SkunkCrafts Updater](https://forums.x-plane.org/files/file/76763-skunkcrafts-updater/) plugin, Jet Blast appears in its list automatically from v1.3.2 on. Click update there and it fetches the new version for you. Your `jetblast.ini` and `jetblast_types.csv` are never overwritten. If you installed an older version, install v1.3.2 or newer by hand once; after that SkunkCrafts takes over.
@@ -98,4 +116,4 @@ These six match to within about 1 %. All other jets use a curve fitted to these 
 Choose **Plugins ▸ Jet Blast ▸ Copy bug report** right after the problem happens. Then paste the report into an [issue](https://github.com/enimri/xplane-jet-blast-releases/issues) or a reply in the forum thread. It contains your Jet Blast version and settings, your aircraft type, the traffic around you and recent Jet Blast log lines. It never includes your name, account, location or files. The same report is also saved as `jetblast_bugreport.txt` in the plugin folder.
 
 ## License
-Freeware: free to download and use, closed source. See [LICENSE.txt](LICENSE.txt).
+Freeware: free to download and use, closed source. See [LICENSE.txt](LICENSE.txt). Jet Blast includes LiveTraffic's LTAPI (MIT licence); see `THIRD_PARTY_NOTICES.txt`.
