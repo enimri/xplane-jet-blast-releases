@@ -1,0 +1,2 @@
+# Updater files must be served byte-for-byte (their CRC32s are listed in the whitelist)
+skunkcrafts/** -text

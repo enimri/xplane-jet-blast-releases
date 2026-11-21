@@ -1,0 +1,12 @@
+# Add or override aircraft types here. One row per ICAO designator.
+# layout: W2 (twin wing jets), W4 (four wing jets), T2 (twin rear jets), T3 (three rear jets),
+#         W2T1 (two wing + one tail jet), P1 (single nose prop), P2 (twin props), P4 (four props)
+# eng_height_m: exhaust / prop axis height above ground. frac1/frac2: engine lateral position
+# as a fraction of the half-span (frac2 only for 4-engine types). prop_dia_m: 0 for jets.
+# Optional cal_idle, cal_break, cal_to: blast reach factors at idle / breakaway / takeoff
+# thrust (1.0 = uncalibrated model; copy the values from jetblast_typedb.csv for similar types).
+# Rows here always win over jetblast_typedb.csv, including after automatic data updates.
+#
+# icao, mtow_kg, span_m, length_m, thrust_kN_total, layout, eng_height_m, frac1, frac2, prop_dia_m, cal_idle, cal_break, cal_to
+# Example (uncomment to use):
+# A3ST, 155000, 44.8, 56.2, 524, W2, 2.3, 0.35, 0, 0, 0.93, 0.74, 1.40
