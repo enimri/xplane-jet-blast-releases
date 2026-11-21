@@ -72,7 +72,7 @@ jobs:
                 | {
                     username: "Jet Blast",
                     avatar_url: $cover,
-                    content: "**New Jet Blast release: \(.name)**",
+                    content: "**New release: \(.name)**",
                     embeds: [{
                       title: .name,
                       url: .url,
