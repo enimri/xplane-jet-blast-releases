@@ -1,0 +1,144 @@
+name: Discord announcements
+
+# Posts Jet Blast news to a Discord channel through a webhook stored in the
+# repository secret DISCORD_WEBHOOK (Discord: channel settings > Integrations
+# > Webhooks > New Webhook > Copy Webhook URL).
+#
+#  - every published release: title, release notes, download link
+#  - every aircraft-data update (data/typedb.csv): version and type count
+#  - manual run (Actions tab > Discord announcements > Run workflow):
+#      history         one post listing every release so far
+#      latest-release  re-post the latest release
+#      test            a short "connected" message
+
+on:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+    paths: ["data/typedb.csv"]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "What to post"
+        type: choice
+        options: [history, latest-release, test]
+        default: history
+
+permissions:
+  contents: read
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    env:
+      WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      COVER: https://raw.githubusercontent.com/${{ github.repository }}/main/images/jetblast-cover.png
+      LATEST: https://github.com/${{ github.repository }}/releases/latest
+      COLOR: "16106496" # signage yellow #F5C400
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the webhook secret
+        run: |
+          if [ -z "$WEBHOOK" ]; then
+            echo "::error::Add the DISCORD_WEBHOOK repository secret first."
+            exit 1
+          fi
+
+      - name: Build the message
+        run: |
+          set -euo pipefail
+          mode="${{ github.event_name }}"
+          if [ "$mode" = "workflow_dispatch" ]; then mode="${{ inputs.mode }}"; fi
+          echo "Mode: $mode"
+
+          case "$mode" in
+            release|latest-release)
+              if [ "${{ github.event_name }}" = "release" ]; then
+                tag="${{ github.event.release.tag_name }}"
+              else
+                tag=$(gh release view --repo "$REPO" --json tagName -q .tagName)
+              fi
+              gh release view "$tag" --repo "$REPO" --json name,body,url,publishedAt > rel.json
+              # Discord embeds don't render markdown headings: turn "### X" into bold,
+              # drop the checksum line, and stay under Discord's 4096-character limit.
+              jq --arg cover "$COVER" --arg latest "$LATEST" --argjson color "$COLOR" '
+                (.body | gsub("\r"; "")
+                       | gsub("(?<p>^|\n)#{1,6} +(?<h>[^\n]*)"; "\(.p)**\(.h)**")
+                       | gsub("\nSHA-256[^\n]*"; "")) as $notes
+                | {
+                    username: "Jet Blast",
+                    avatar_url: $cover,
+                    content: "**New Jet Blast release: \(.name)**",
+                    embeds: [{
+                      title: .name,
+                      url: .url,
+                      description: (if ($notes | length) > 3900 then $notes[0:3900] + "…\n\n[Full release notes](\(.url))" else $notes end),
+                      color: $color,
+                      thumbnail: { url: $cover },
+                      fields: [
+                        { name: "Download", value: "[Latest release on GitHub](\($latest))", inline: true },
+                        { name: "Update", value: "SkunkCrafts Updater, or replace the JetBlast folder", inline: true }
+                      ],
+                      footer: { text: "X-Plane 12 · Windows · macOS · Linux · Freeware" },
+                      timestamp: .publishedAt
+                    }]
+                  }' rel.json > payload.json
+              ;;
+
+            history)
+              gh release list --repo "$REPO" --limit 50 --json tagName,name,publishedAt > rels.json
+              jq --arg cover "$COVER" --arg latest "$LATEST" --argjson color "$COLOR" '
+                (sort_by(.publishedAt)
+                 | map("**\(.tagName)** · \(.publishedAt[0:10])  \((.name | sub("^Jet Blast v[0-9.]+:? *"; "")) as $t | if $t == "" then "first release" else $t end)")
+                 | join("\n")) as $list
+                | {
+                    username: "Jet Blast",
+                    avatar_url: $cover,
+                    embeds: [{
+                      title: "Jet Blast for X-Plane 12: everything so far",
+                      url: $latest,
+                      description: ("Jet blast and prop wash from VATSIM, IVAO and LiveTraffic traffic. Taxi too close behind a departing heavy and it pushes you around.\n\n" + $list + "\n\nNew releases will be posted here automatically."),
+                      color: $color,
+                      image: { url: $cover },
+                      fields: [ { name: "Download", value: "[Latest release on GitHub](\($latest))", inline: true } ]
+                    }]
+                  }' rels.json > payload.json
+              ;;
+
+            push)
+              ver=$(head -1 data/typedb.csv | sed -n 's/.*version=\([^ ]*\).*/\1/p')
+              types=$(grep -cv '^#' data/typedb.csv || true)
+              jq -n --arg ver "$ver" --arg types "$types" --arg cover "$COVER" --argjson color "$COLOR" '{
+                username: "Jet Blast",
+                avatar_url: $cover,
+                embeds: [{
+                  title: "Aircraft data updated to v\($ver)",
+                  description: "Jet Blast now knows **\($types) aircraft types**. Installed copies (v1.3.0 and newer) pick this up automatically at the next X-Plane start; nothing to download.",
+                  color: $color
+                }]
+              }' > payload.json
+              ;;
+
+            test)
+              jq -n --arg cover "$COVER" '{
+                username: "Jet Blast",
+                avatar_url: $cover,
+                content: "Jet Blast announcements are connected. New releases will be posted in this channel."
+              }' > payload.json
+              ;;
+
+            *)
+              echo "::error::Unknown mode $mode"; exit 1 ;;
+          esac
+          jq . payload.json
+
+      - name: Post to Discord
+        run: |
+          code=$(curl -sS -o resp.txt -w '%{http_code}' -H 'Content-Type: application/json' \
+                 --data-binary @payload.json "${WEBHOOK}?wait=true")
+          echo "Discord answered HTTP $code"
+          if [ "$code" -ge 300 ]; then cat resp.txt; exit 1; fi
