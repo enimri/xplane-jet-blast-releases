@@ -2,6 +2,10 @@
 # One [version] section per release, newest first, "- " for each point.
 # Keep points short: they are word-wrapped in a small window.
 
+[1.7.0]
+- Jet blast warning: X-Plane's voice says "Caution, jet blast" and a banner names the aircraft and blast speed when strong blast reaches you. Set the threshold or switch it off under Warnings in Settings.
+- VR: the Settings, debug and What's new windows now open inside your headset when you fly in VR.
+
 [1.6.1]
 - New look: the Settings window now has a preset bar, ON/OFF switches, - and + steppers (or drag the value left and right), and tips when you hover over a setting.
 - The debug window shows the blast at your aircraft at a glance, with colour from green to red.

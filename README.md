@@ -17,6 +17,8 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 - Jet blast reach calibrated against ICAO published distances (see *Accuracy* below).
 - One-click presets: **Realistic**, **Gentle**, **Event mode** for crowded VATSIM/IVAO events, and **Off**.
 - **Auto Event mode:** switches to Event behaviour by itself when a crowd builds up around you, and back when it clears.
+- **Jet blast warning:** X-Plane's voice says "Caution, jet blast" and a banner names the aircraft when strong blast reaches you.
+- **VR:** all Jet Blast windows open inside your headset.
 - Blast that hugs the ground, with random gusts.
 - Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots.
 - Settings window inside X-Plane, a one-click bug report, and an update check.

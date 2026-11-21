@@ -1,10 +1,10 @@
 LICENSE.txt|126629683
 README.md|3253412384
 THIRD_PARTY_NOTICES.txt|1255379792
-WHATSNEW.txt|3409796409
-jetblast.ini|3756521563
+WHATSNEW.txt|1627688079
+jetblast.ini|3719400295
 jetblast_typedb.csv|3750286439
 jetblast_types.csv|3643318539
-lin_x64/JetBlast.xpl|3251813999
-mac_x64/JetBlast.xpl|630232601
-win_x64/JetBlast.xpl|2929598755
+lin_x64/JetBlast.xpl|3111923386
+mac_x64/JetBlast.xpl|2598057271
+win_x64/JetBlast.xpl|2784488875
