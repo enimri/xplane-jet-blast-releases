@@ -14,6 +14,7 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 - Engine data for 410 aircraft types, from the C172 to the A380, including props, rear-engine jets, bizjets and military types. The list updates itself from GitHub, so new types arrive without a new plugin version.
 - Jet blast reach calibrated against ICAO published distances (see *Accuracy* below).
 - One-click presets: **Realistic**, **Gentle**, **Event mode** for crowded VATSIM/IVAO events, and **Off**.
+- **Auto Event mode:** switches to Event behaviour by itself when a crowd builds up around you, and back when it clears.
 - Blast that hugs the ground, with random gusts.
 - Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots.
 - Settings window inside X-Plane, a one-click bug report, and an update check.
@@ -58,6 +59,13 @@ The window shows which settings are active. Per-aircraft settings cover strength
 
 Change any value by hand and the preset shows as *custom*.
 
+**Auto Event mode** (on by default): when **15 or more aircraft** are within 2 km of you for 10 seconds, as at a busy VATSIM/IVAO event, Jet Blast switches to Event-mode behaviour by itself. It switches back once fewer than 10 remain for 30 seconds, and those delays stop it flickering in a fluctuating crowd.
+
+- It only ever makes the blast **gentler**: each value becomes the weaker of your own setting and Event mode's.
+- It never changes your saved settings.
+- The Settings and debug windows show whether it's active and how many aircraft are around you.
+- Change the crowd size or switch it off in Settings (*Auto Event mode in crowds*, *Crowd size*).
+
 You can also edit `jetblast.ini` directly, then choose **Plugins ▸ Jet Blast ▸ Reload settings**.
 
 | Setting | What it does |
@@ -71,6 +79,7 @@ You can also edit `jetblast.ini` directly, then choose **Plugins ▸ Jet Blast �
 | `user_span_m`, `user_length_m` | Your aircraft size if auto-detection is wrong (0 = auto, ini file only) |
 | `check_updates` | Check for a newer Jet Blast version when X-Plane starts |
 | `use_livetraffic` | Use LiveTraffic's flight phase for its aircraft (1 = on) |
+| `auto_event`, `auto_event_count` | Auto Event mode on/off, and how many aircraft within 2 km count as a crowd (15) |
 
 ## LiveTraffic
 If [LiveTraffic](https://forums.x-plane.org/files/file/49749-livetraffic/) is running, Jet Blast reads each aircraft's flight phase from it: parked, taxi, take-off roll, climb, approach, landing roll, plus how far the reversers are open. That replaces the guess from motion:

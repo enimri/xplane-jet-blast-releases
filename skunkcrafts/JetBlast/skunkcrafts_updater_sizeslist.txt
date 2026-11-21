@@ -1,9 +1,9 @@
 LICENSE.txt|1189
-README.md|9066
+README.md|9964
 THIRD_PARTY_NOTICES.txt|1293
-jetblast.ini|1445
+jetblast.ini|1666
 jetblast_typedb.csv|23760
 jetblast_types.csv|952
-lin_x64/JetBlast.xpl|2350328
-mac_x64/JetBlast.xpl|762592
-win_x64/JetBlast.xpl|600064
+lin_x64/JetBlast.xpl|2351592
+mac_x64/JetBlast.xpl|764736
+win_x64/JetBlast.xpl|606720
