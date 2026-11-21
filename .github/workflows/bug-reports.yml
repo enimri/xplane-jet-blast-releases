@@ -49,7 +49,7 @@ jobs:
             | (section("Computer")) as $os
             | (($b | capture("Jet Blast: v(?<v>[0-9][0-9.]*)") | .v)? // "not given") as $ver
             | (($b | capture("Auto Event mode: (?<v>[A-Za-z]+)") | .v)? // null) as $ae
-            | (($b | capture("LiveTraffic: (?<v>[a-z ]+)") | .v)? // null) as $lt
+            | (($b | capture("LiveTraffic: (?<v>used|off|not running)") | .v)? // null) as $lt
             | {
                 username: "Jet Blast bug reports",
                 allowed_mentions: { parse: [] },
