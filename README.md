@@ -1,6 +1,6 @@
 # Jet Blast for X-Plane 12
 
-
+![Jet Blast: modelled blast behind a 737-800 at takeoff thrust](images/jetblast-cover.png)
 
 Jet blast and prop wash from **online and plugin traffic**: VATSIM and IVAO (through xPilot or swift), LiveTraffic, and anything else that uses X-Plane's TCAS traffic API.
 
