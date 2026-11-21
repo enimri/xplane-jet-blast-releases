@@ -2,6 +2,10 @@
 # One [version] section per release, newest first, "- " for each point.
 # Keep points short: they are word-wrapped in a small window.
 
+[1.8.0]
+- Helicopter downwash: hovering, landing and departing helicopters now blow you around with their rotor downwash, strongest one to two rotor widths away. Marked ROTOR in the debug window; switch it off in Settings.
+- 41 helicopter types added, from the R22 to the Mi-26. Helicopters were treated as small airliners before.
+
 [1.7.0]
 - Jet blast warning: X-Plane's voice says "Caution, jet blast" and a banner names the aircraft and blast speed when strong blast reaches you. Set the threshold or switch it off under Warnings in Settings.
 - VR: the Settings, debug and What's new windows now open inside your headset when you fly in VR.

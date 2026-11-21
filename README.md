@@ -1,6 +1,6 @@
 # Jet Blast for X-Plane 12
 
-![Jet Blast: modelled blast behind a 737-800 at takeoff thrust](images/jetblast-cover.png)
+
 
 Jet blast and prop wash from **online and plugin traffic**: VATSIM and IVAO (through xPilot or swift), LiveTraffic, and anything else that uses X-Plane's TCAS traffic API.
 
@@ -13,12 +13,13 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 - Thrust is estimated from each aircraft's motion: idle, breakaway, takeoff, reverse thrust after landing, and engines off when the beacon is off.
 - **With LiveTraffic**, its real flight phase is used instead (take-off roll, landing roll with reversers...), so blast starts and stops at the right moment.
 - **Settings per aircraft:** for example full blast in the C172, gentle in the A320, switched automatically when you load the aircraft.
-- Engine data for 410 aircraft types, from the C172 to the A380, including props, rear-engine jets, bizjets and military types. The list updates itself from GitHub, so new types arrive without a new plugin version.
+- Engine data for 451 aircraft types, from the C172 to the A380, including props, rear-engine jets, bizjets, military types and 41 helicopters. The list updates itself from GitHub, so new types arrive without a new plugin version.
 - Jet blast reach calibrated against ICAO published distances (see *Accuracy* below).
 - One-click presets: **Realistic**, **Gentle**, **Event mode** for crowded VATSIM/IVAO events, and **Off**.
 - **Auto Event mode:** switches to Event behaviour by itself when a crowd builds up around you, and back when it clears.
 - **Jet blast warning:** X-Plane's voice says "Caution, jet blast" and a banner names the aircraft when strong blast reaches you.
 - **VR:** all Jet Blast windows open inside your headset.
+- **Helicopter downwash:** hovering, landing and departing helicopters blow you around with their rotor wash, from a gentle R44 to a Mi-26 hurricane.
 - Blast that hugs the ground, with random gusts.
 - Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots.
 - Settings window inside X-Plane, a one-click bug report, and an update check.
@@ -82,6 +83,7 @@ You can also edit `jetblast.ini` directly, then choose **Plugins ▸ Jet Blast �
 | `include_xplane_ai` | Also use X-Plane's own AI traffic |
 | `user_span_m`, `user_length_m` | Your aircraft size if auto-detection is wrong (0 = auto, ini file only) |
 | `check_updates` | Check for a newer Jet Blast version when X-Plane starts |
+| `heli_downwash` | Helicopters push you with their rotor downwash (1 = on) |
 | `use_livetraffic` | Use LiveTraffic's flight phase for its aircraft (1 = on) |
 | `auto_event`, `auto_event_count` | Auto Event mode on/off, and how many aircraft within 2 km count as a crowd (15) |
 
@@ -106,7 +108,7 @@ At the same time it downloads the latest **aircraft data** (the type list). A ne
 Both checks send no personal data; turn them off in Settings or with `check_updates = 0`.
 
 ## Aircraft data
-`jetblast_typedb.csv` holds size, weight, thrust and engine layout for 410 types. Don't edit it; your changes would be replaced by updates. To add or fix a type, put a row in `jetblast_types.csv` instead (the format is explained inside the file). Your rows always win over the database.
+`jetblast_typedb.csv` holds size, weight, thrust and engine layout for 451 types. Don't edit it; your changes would be replaced by updates. To add or fix a type, put a row in `jetblast_types.csv` instead (the format is explained inside the file). Your rows always win over the database.
 
 ## Accuracy
 Blast reach for jets is calibrated against the distances behind the tail at which the blast falls to 56 km/h (35 mph), as listed in ICAO Doc 9157 *Aerodrome Design Manual* Part 2, Table A2-1, for idle, breakaway and takeoff thrust:
@@ -120,7 +122,7 @@ Blast reach for jets is calibrated against the distances behind the tail at whic
 | MD-11 | 65 m | 160 m | 564 m |
 | A380 | 45 m | 88 m | 429 m |
 
-These six match to within about 1 %. All other jets use a curve fitted to these six by total thrust, so expect roughly ±30–50 % for them. Propeller wash is not calibrated (there's no equivalent published table), and the aircraft dimensions and thrust figures are rounded public values. Thrust is still estimated from how each aircraft moves, so real-world accuracy also depends on that guess.
+These six match to within about 1 %. All other jets use a curve fitted to these six by total thrust, so expect roughly ±30–50 % for them. Helicopter downwash uses rotor momentum theory: hovering, a Black Hawk gives about 30 kt one rotor width away and about 17 kt at 50 m, in line with published rotorwash surveys. Propeller wash is not calibrated (there's no equivalent published table), and the aircraft dimensions and thrust figures are rounded public values. Thrust is still estimated from how each aircraft moves, so real-world accuracy also depends on that guess.
 
 ## Known limitations
 - Networks don't send engine data, so thrust is estimated from motion. A static run-up on the brakes isn't detected unless the traffic source sends throttle data.
