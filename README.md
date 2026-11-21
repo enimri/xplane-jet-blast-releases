@@ -66,7 +66,9 @@ You can also edit `jetblast.ini` directly, then choose **Plugins â–¸ Jet Blast â
 | `check_updates` | Check for a newer Jet Blast version when X-Plane starts |
 
 ## Updates
-When X-Plane starts, Jet Blast asks GitHub once whether a newer version exists. If there is one, the menu changes to **Jet Blast (update available)** and the Settings window shows where to download it. Nothing is installed automatically.
+**With SkunkCrafts Updater (easiest):** if you use the [SkunkCrafts Updater](https://forums.x-plane.org/files/file/76763-skunkcrafts-updater/) plugin, Jet Blast appears in its list automatically from v1.3.2 on. Click update there and it fetches the new version for you. Your `jetblast.ini` and `jetblast_types.csv` are never overwritten. If you installed an older version, install v1.3.2 or newer by hand once; after that SkunkCrafts takes over.
+
+**Without it:** when X-Plane starts, Jet Blast asks GitHub once whether a newer version exists. If there is one, the menu changes to **Jet Blast (update available)** and the Settings window shows where to download it. Nothing is installed automatically.
 
 At the same time it downloads the latest **aircraft data** (the type list). A newer list is checked for damage, saved as `jetblast_typedb_latest.csv` and used straight away. That's the only thing updated automatically, and it's only data, never program code.
 
