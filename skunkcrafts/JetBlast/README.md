@@ -124,7 +124,7 @@ These six match to within about 1 %. All other jets use a curve fitted to these 
 - The macOS and Linux versions are new and have only been build-tested so far. Reports from Mac and Linux users are especially welcome.
 
 ## Problems or ideas?
-Choose **Plugins ▸ Jet Blast ▸ Copy bug report** right after the problem happens. Then paste the report into an [issue](https://github.com/enimri/xplane-jet-blast-releases/issues) or a reply in the forum thread. It contains your Jet Blast version and settings, your aircraft type, the traffic around you and recent Jet Blast log lines. It never includes your name, account, location or files. The same report is also saved as `jetblast_bugreport.txt` in the plugin folder.
+Choose **Plugins ▸ Jet Blast ▸ Copy bug report** right after the problem happens. Then **[report the bug here](https://github.com/enimri/xplane-jet-blast-releases/issues/new?template=bug_report.yml)** and paste it into the form, or reply in the forum thread. It contains your Jet Blast version and settings, your aircraft type, the traffic around you and recent Jet Blast log lines. It never includes your name, account, location or files. The same report is also saved as `jetblast_bugreport.txt` in the plugin folder.
 
 ## License
 Freeware: free to download and use, closed source. See [LICENSE.txt](LICENSE.txt). Jet Blast includes LiveTraffic's LTAPI (MIT licence); see `THIRD_PARTY_NOTICES.txt`.

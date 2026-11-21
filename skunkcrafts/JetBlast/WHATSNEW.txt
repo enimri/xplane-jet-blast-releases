@@ -2,6 +2,12 @@
 # One [version] section per release, newest first, "- " for each point.
 # Keep points short: they are word-wrapped in a small window.
 
+[1.6.1]
+- New look: the Settings window now has a preset bar, ON/OFF switches, - and + steppers (or drag the value left and right), and tips when you hover over a setting.
+- The debug window shows the blast at your aircraft at a glance, with colour from green to red.
+- Settings now shows a dot in the menu while open; click it again to close.
+- Fixed: the debug window couldn't be reopened from the menu after closing it with its close button.
+
 [1.6.0]
 - New: this window. It opens once after each update and shows what changed. Reopen it any time from Plugins > Jet Blast > What's new.
 
