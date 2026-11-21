@@ -79,8 +79,9 @@ jobs:
         run: |
           mkdir -p stats
           jq --arg date "$(date -u +%Y-%m-%d)" '{date: $date, releases: .}' now.json > stats/downloads.json
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Commit as the repository owner so no bot shows up among contributors.
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "176769003+${{ github.repository_owner }}@users.noreply.github.com"
           git add stats/downloads.json
           git commit -m "Weekly download snapshot $(date -u +%Y-%m-%d) [skip ci]" || echo "No change"
           git push
