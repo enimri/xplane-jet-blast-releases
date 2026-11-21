@@ -1,0 +1,48 @@
+# Shown in X-Plane once after each update (Plugins > Jet Blast > What's new).
+# One [version] section per release, newest first, "- " for each point.
+# Keep points short: they are word-wrapped in a small window.
+
+[1.8.0]
+- Helicopter downwash: hovering, landing and departing helicopters now blow you around with their rotor downwash, strongest one to two rotor widths away. Marked ROTOR in the debug window; switch it off in Settings.
+- 41 helicopter types added, from the R22 to the Mi-26. Helicopters were treated as small airliners before.
+
+[1.7.0]
+- Jet blast warning: X-Plane's voice says "Caution, jet blast" and a banner names the aircraft and blast speed when strong blast reaches you. Set the threshold or switch it off under Warnings in Settings.
+- VR: the Settings, debug and What's new windows now open inside your headset when you fly in VR.
+
+[1.6.1]
+- New look: the Settings window now has a preset bar, ON/OFF switches, - and + steppers (or drag the value left and right), and tips when you hover over a setting.
+- The debug window shows the blast at your aircraft at a glance, with colour from green to red.
+- Settings now shows a dot in the menu while open; click it again to close.
+- Fixed: the debug window couldn't be reopened from the menu after closing it with its close button.
+
+[1.6.0]
+- New: this window. It opens once after each update and shows what changed. Reopen it any time from Plugins > Jet Blast > What's new.
+
+[1.5.0]
+- Auto Event mode: when 15+ aircraft are within 2 km of you, blast is reduced to Event mode by itself, and returns to normal when the crowd clears.
+- It only ever makes blast gentler and never changes your saved settings. Change the crowd size or switch it off in Settings.
+
+[1.4.0]
+- LiveTraffic: its real flight phase is used for its aircraft, so take-off and reverse-thrust blast start at the right moment. Marked LT in the debug window.
+- Settings per aircraft: in Settings, "Save for this aircraft" keeps settings that load automatically whenever you fly it.
+
+[1.3.2]
+- SkunkCrafts Updater support: update Jet Blast from its list. Your settings and aircraft edits are never overwritten.
+
+[1.3.1]
+- Smoother at busy airports: ground-height lookups are spread across frames.
+
+[1.3.0]
+- Presets in Settings: Realistic, Gentle, Event mode and Off.
+- 410 aircraft types, updated automatically from GitHub.
+- Blast reach calibrated to ICAO published distances.
+
+[1.2.0]
+- Settings window, Copy bug report, and a check for new versions.
+
+[1.1.0]
+- macOS (Intel and Apple Silicon) and Linux.
+
+[1.0.0]
+- First release: jet blast and prop wash from VATSIM, IVAO and LiveTraffic traffic.

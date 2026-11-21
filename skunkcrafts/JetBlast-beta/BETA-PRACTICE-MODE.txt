@@ -1,0 +1,41 @@
+Jet Blast 1.8.1 beta 1  -  practice mode (beta builds only)
+==========================================================
+
+Practice mode lets you try jet blast and helicopter downwash offline, with no
+VATSIM, IVAO or LiveTraffic running. It places a pretend aircraft that only
+Jet Blast knows about, shown as one of X-Plane's own parked aircraft models.
+
+Menu: Plugins > Jet Blast > Practice (beta)
+(every item is also a command under jetblast/practice/ that you can bind
+to a key or joystick button in X-Plane's keyboard settings)
+
+  Place A320 ahead of me        its tail 40 m in front of your nose
+  Place 777 ahead of me         the same with a heavy
+  Place helicopter beside me    a Black Hawk-size helicopter 25 m to your right
+
+  Idle                          (helicopter: sits on the ground, rotor turning)
+  Breakaway thrust              (helicopter: hovers 4 m up)
+  Take-off power on the brakes  (helicopter: hovers 4 m up)
+
+  Take off and leave            jets roll away and climb; the helicopter
+                                climbs and flies off
+  Remove practice aircraft
+
+X-Plane's voice confirms each step. The debug window (Plugins > Jet Blast >
+Show debug window) marks it PRACTICE and shows the blast at your aircraft.
+
+Things to check in this beta
+  1. Breakaway and take-off power behind the A320 / 777: do you get pushed,
+     and does the "Caution, jet blast" warning come at the right time?
+  2. Helicopter hover beside you: do you feel the downwash (ROTOR in the
+     debug window)? Try it with a small aircraft like the C172.
+  3. If you have VR: do the Settings, debug and What's new windows open in
+     the headset?
+  4. Anything odd: Plugins > Jet Blast > Copy bug report, and send it.
+
+Practice mode is only in beta builds, never in public releases.
+
+Beta channel
+  With SkunkCrafts Updater, installing this zip puts you on the Jet Blast
+  beta channel: later betas appear in SkunkCrafts automatically. To go back
+  to normal releases, install the latest normal zip by hand once.
