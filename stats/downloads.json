@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-21",
+  "releases": [
+    {
+      "downloads": 3,
+      "published": "2026-11-21T08:01:35Z",
+      "tag": "v1.5.0"
+    },
+    {
+      "downloads": 2,
+      "published": "2026-11-21T07:56:32Z",
+      "tag": "v1.4.0"
+    },
+    {
+      "downloads": 4,
+      "published": "2026-11-21T07:30:12Z",
+      "tag": "v1.3.2"
+    },
+    {
+      "downloads": 3,
+      "published": "2026-11-20T20:00:38Z",
+      "tag": "v1.3.1"
+    },
+    {
+      "downloads": 2,
+      "published": "2026-11-20T19:53:52Z",
+      "tag": "v1.3.0"
+    },
+    {
+      "downloads": 3,
+      "published": "2026-11-20T18:41:38Z",
+      "tag": "v1.2.0"
+    },
+    {
+      "downloads": 4,
+      "published": "2026-11-20T18:23:04Z",
+      "tag": "v1.1.0"
+    },
+    {
+      "downloads": 5,
+      "published": "2026-11-20T17:33:29Z",
+      "tag": "v1.0.0"
+    }
+  ]
+}
