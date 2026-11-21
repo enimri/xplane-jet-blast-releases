@@ -1,0 +1,86 @@
+name: Weekly download stats
+
+# Every Monday 09:00 UTC: posts Jet Blast's GitHub download counts to the
+# Discord channel (secret DISCORD_WEBHOOK) and saves a snapshot in
+# stats/downloads.json so next week's post can show the change.
+# Counts are GitHub release-zip downloads only; SkunkCrafts Updater and
+# x-plane.to downloads are not included (they publish no counts).
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    env:
+      WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      COVER: https://raw.githubusercontent.com/${{ github.repository }}/main/images/jetblast-cover.png
+      LATEST: https://github.com/${{ github.repository }}/releases/latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect download counts
+        run: |
+          set -euo pipefail
+          gh api "repos/$REPO/releases?per_page=100" \
+            --jq '[.[] | select(.draft | not) | {tag: .tag_name, published: .published_at, downloads: ([.assets[].download_count] | add // 0)}]' > now.json
+          if [ -f stats/downloads.json ]; then cp stats/downloads.json prev.json; else echo '{"date": null, "releases": []}' > prev.json; fi
+          cat now.json
+
+      - name: Build the Discord message
+        run: |
+          set -euo pipefail
+          jq -n --slurpfile now now.json --slurpfile prev prev.json \
+                --arg cover "$COVER" --arg latest "$LATEST" '
+            ($now[0]) as $n | ($prev[0]) as $p
+            | ($p.releases | map({key: .tag, value: .downloads}) | from_entries) as $before
+            | ($p.date != null) as $hasPrev
+            | ($n | map(.downloads) | add // 0) as $total
+            | ($n | map(.downloads - ($before[.tag] // 0)) | add // 0) as $week
+            | ($n | sort_by(.published) | reverse) as $sorted
+            | ($sorted | map(
+                "**\(.tag)**  \(.downloads)" +
+                (if $hasPrev then "  (+\(.downloads - ($before[.tag] // 0)))" else "" end)
+              ) | join("\n")) as $lines
+            | {
+                username: "Jet Blast",
+                avatar_url: $cover,
+                embeds: [{
+                  title: "Jet Blast weekly downloads",
+                  url: $latest,
+                  color: 16106496,
+                  fields: [
+                    { name: "This week", value: (if $hasPrev then "\($week)" else "first report" end), inline: true },
+                    { name: "All time", value: "\($total)", inline: true },
+                    { name: "Latest", value: "\($sorted[0].tag)", inline: true },
+                    { name: "Per version", value: (if ($lines | length) > 1000 then $lines[0:1000] + "…" else $lines end) }
+                  ],
+                  footer: { text: "GitHub release downloads only. SkunkCrafts Updater and x-plane.to are not counted." }
+                }]
+              }' > payload.json
+          jq . payload.json
+
+      - name: Post to Discord
+        if: env.WEBHOOK != ''
+        run: |
+          code=$(curl -sS -o resp.txt -w '%{http_code}' -H 'Content-Type: application/json' \
+                 --data-binary @payload.json "${WEBHOOK}?wait=true")
+          echo "Discord answered HTTP $code"
+          if [ "$code" -ge 300 ]; then cat resp.txt; exit 1; fi
+
+      - name: Save this week's snapshot
+        run: |
+          mkdir -p stats
+          jq --arg date "$(date -u +%Y-%m-%d)" '{date: $date, releases: .}' now.json > stats/downloads.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add stats/downloads.json
+          git commit -m "Weekly download snapshot $(date -u +%Y-%m-%d) [skip ci]" || echo "No change"
+          git push
