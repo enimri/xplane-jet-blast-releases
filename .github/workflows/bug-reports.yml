@@ -1,0 +1,79 @@
+name: Bug reports to Discord
+
+# Posts every new GitHub issue (the bug report form) to the Discord
+# #bug-reports channel through the DISCORD_BUGS_WEBHOOK secret.
+#
+# Safety: issue text comes from anyone on the internet, so it is only ever
+# passed through environment variables and jq (never pasted into the shell
+# script), and Discord mentions are disabled so a report can't ping
+# @everyone or roles.
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: read
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    env:
+      WEBHOOK: ${{ secrets.DISCORD_BUGS_WEBHOOK }}
+      ISSUE_TITLE: ${{ github.event.issue.title }}
+      ISSUE_BODY: ${{ github.event.issue.body }}
+      ISSUE_URL: ${{ github.event.issue.html_url }}
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      ISSUE_USER: ${{ github.event.issue.user.login }}
+      ISSUE_CREATED: ${{ github.event.issue.created_at }}
+    steps:
+      - name: Check the webhook secret
+        id: check
+        run: |
+          if [ -z "$WEBHOOK" ]; then
+            echo "::notice::DISCORD_BUGS_WEBHOOK is not set; skipping the Discord post."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build the message
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          jq -n '
+            env.ISSUE_BODY // "" | gsub("\r"; "") as $b
+            # The form renders as "### Question\n\nAnswer" sections.
+            | def section($name):
+                ($b | capture("### " + $name + "[^\n]*\n+(?<v>[\\s\\S]*?)(\n### |\\z)") | .v | gsub("^\\s+|\\s+$"; ""))? // "";
+            def short($s; $n): if ($s | length) > $n then $s[0:$n] + "…" else $s end;
+            (section("What happened")) as $what
+            | (section("Where did the traffic")) as $traffic
+            | (section("Computer")) as $os
+            | (($b | capture("Jet Blast: v(?<v>[0-9][0-9.]*)") | .v)? // "not given") as $ver
+            | (($b | capture("Auto Event mode: (?<v>[A-Za-z]+)") | .v)? // null) as $ae
+            | (($b | capture("LiveTraffic: (?<v>[a-z ]+)") | .v)? // null) as $lt
+            | {
+                username: "Jet Blast bug reports",
+                allowed_mentions: { parse: [] },
+                embeds: [{
+                  title: short("#\(env.ISSUE_NUMBER): \(env.ISSUE_TITLE)"; 250),
+                  url: env.ISSUE_URL,
+                  description: short(if $what == "" then $b else $what end; 1500),
+                  color: 15158332,
+                  fields: ([
+                    { name: "Jet Blast", value: "v\($ver)", inline: true },
+                    { name: "Computer", value: (if $os == "" then "not given" else $os end), inline: true },
+                    { name: "Traffic", value: short(if $traffic == "" then "not given" else $traffic end; 200), inline: true }
+                  ] + (if $ae then [{ name: "Auto Event", value: $ae, inline: true }] else [] end)
+                    + (if $lt then [{ name: "LiveTraffic", value: $lt, inline: true }] else [] end)),
+                  footer: { text: "Reported by \(env.ISSUE_USER) on GitHub" },
+                  timestamp: env.ISSUE_CREATED
+                }]
+              }' > payload.json
+          jq . payload.json
+
+      - name: Post to Discord
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          code=$(curl -sS -o resp.txt -w '%{http_code}' -H 'Content-Type: application/json' \
+                 --data-binary @payload.json "${WEBHOOK}?wait=true")
+          echo "Discord answered HTTP $code"
+          if [ "$code" -ge 300 ]; then cat resp.txt; exit 1; fi

@@ -1,0 +1,64 @@
+name: Bug report
+description: Something in Jet Blast doesn't work or feels wrong
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this.
+        **Tip:** right after the problem happens, choose **Plugins ▸ Jet Blast ▸ Copy bug report** in X-Plane, then paste it below. It contains everything needed to look into it (versions, settings, the traffic around you, recent Jet Blast log lines) and nothing personal.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you see or feel, and what did you expect instead?
+      placeholder: e.g. Behind a departing 777 on VATSIM my C172 was pushed to the left, but the blast was on my right.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can it be reproduced? (optional)
+      description: Airport, aircraft you flew, what the traffic was doing.
+      placeholder: |
+        1. EGLL, holding at A1 behind a departing B77W (VATSIM)
+        2. Aircraft: Laminar C172
+        3. ...
+
+  - type: dropdown
+    id: traffic
+    attributes:
+      label: Where did the traffic come from?
+      multiple: true
+      options:
+        - VATSIM (xPilot or swift)
+        - IVAO
+        - LiveTraffic
+        - X-Plane AI traffic
+        - Other / not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Computer
+      options:
+        - Windows
+        - macOS (Apple Silicon)
+        - macOS (Intel)
+        - Linux
+    validations:
+      required: true
+
+  - type: textarea
+    id: report
+    attributes:
+      label: Jet Blast bug report
+      description: Paste the text from Plugins ▸ Jet Blast ▸ Copy bug report. (It's also saved as jetblast_bugreport.txt in the Jet Blast plugin folder.)
+      render: text
+    validations:
+      required: true

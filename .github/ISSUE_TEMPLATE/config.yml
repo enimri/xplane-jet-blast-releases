@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions, ideas and discussion
+    url: https://forums.x-plane.org/forums/topic/354392-freeware-jet-blast-v150-jet-blast-prop-wash-from-vatsim-ivao-livetraffic-xp12-winmaclinux/
+    about: Ask questions or suggest features in the Jet Blast thread on X-Plane.org.
+  - name: Download the latest version
+    url: https://github.com/enimri/xplane-jet-blast-releases/releases/latest
+    about: Make sure you're on the latest Jet Blast before reporting a bug.
