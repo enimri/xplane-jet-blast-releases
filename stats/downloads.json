@@ -1,6 +1,31 @@
 {
-  "date": "2026-11-21",
+  "date": "2026-11-23",
   "releases": [
+    {
+      "downloads": 1,
+      "published": "2026-11-21T16:07:44Z",
+      "tag": "v1.8.1-beta1"
+    },
+    {
+      "downloads": 3,
+      "published": "2026-11-21T15:53:28Z",
+      "tag": "v1.8.0"
+    },
+    {
+      "downloads": 4,
+      "published": "2026-11-21T12:30:46Z",
+      "tag": "v1.7.0"
+    },
+    {
+      "downloads": 3,
+      "published": "2026-11-21T09:33:31Z",
+      "tag": "v1.6.1"
+    },
+    {
+      "downloads": 4,
+      "published": "2026-11-21T08:57:04Z",
+      "tag": "v1.6.0"
+    },
     {
       "downloads": 3,
       "published": "2026-11-21T08:01:35Z",
