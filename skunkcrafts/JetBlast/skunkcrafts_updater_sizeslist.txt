@@ -1,8 +1,8 @@
 LICENSE.txt|1394
 README.md|13397
 THIRD_PARTY_NOTICES.txt|1293
-WHATSNEW.txt|3646
+WHATSNEW.txt|3963
 jetblast_typedb.csv|26225
-lin_x64/JetBlast.xpl|2504344
-mac_x64/JetBlast.xpl|1003264
-win_x64/JetBlast.xpl|743936
+lin_x64/JetBlast.xpl|2504568
+mac_x64/JetBlast.xpl|1003552
+win_x64/JetBlast.xpl|744960
