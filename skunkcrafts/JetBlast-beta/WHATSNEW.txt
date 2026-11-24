@@ -5,6 +5,7 @@
 [1.9.0]
 - Crosswind bends the blast: in a crosswind, blast from far ahead drifts downwind, so a heavy straight ahead may miss you while one off to the side catches you.
 - The blast's direction: the debug window shows where it comes from ("18 kt from NW") and the warning names the clock position ("42 kt from 7 o'clock").
+- For add-on makers: datarefs jetblast/blast_kt, blast_from_deg, blast_clock, push_g, source_icao, source_callsign, warning and more, for FlyWithLua, sound packs and home cockpits. Listed in the README.
 - Send bug report (Plugins > Jet Blast, or the button in Settings): opens the bug form in your browser with the report already filled in. Describe what happened and press Submit. No more copy and paste.
 - New aircraft types that download automatically are now announced in this window, once.
 - Near-miss log: your strongest blast encounters of the session (peak speed, push in g, source, airport) are listed in the debug window and the bug report, and saved to jetblast_blastlog.csv.

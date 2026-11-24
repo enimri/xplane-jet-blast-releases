@@ -1,9 +1,9 @@
 BETA-PRACTICE-MODE.txt|1988
 LICENSE.txt|1394
-README.md|11864
+README.md|13397
 THIRD_PARTY_NOTICES.txt|1293
-WHATSNEW.txt|3443
+WHATSNEW.txt|3646
 jetblast_typedb.csv|26225
-lin_x64/JetBlast.xpl|2509088
-mac_x64/JetBlast.xpl|1020160
-win_x64/JetBlast.xpl|751104
+lin_x64/JetBlast.xpl|2518928
+mac_x64/JetBlast.xpl|1021344
+win_x64/JetBlast.xpl|755200

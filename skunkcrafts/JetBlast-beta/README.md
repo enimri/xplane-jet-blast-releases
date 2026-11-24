@@ -108,6 +108,35 @@ At the same time it downloads the latest **aircraft data** (the type list). A ne
 
 Both checks send no personal data; turn them off in Settings or with `check_updates = 0`.
 
+## For add-on makers: datarefs
+Jet Blast publishes what it computes at your aircraft as read-only datarefs, for FlyWithLua scripts, sound packs, home cockpits or Air Manager. They work with every traffic source Jet Blast uses (VATSIM, IVAO, LiveTraffic, X-Plane AI) and show up in DataRefTool.
+
+| Dataref | Type | Meaning |
+|---|---|---|
+| `jetblast/blast_kt` | float | Blast speed at your aircraft, knots |
+| `jetblast/blast_from_deg` | float | True bearing the blast comes from (0–360), −1 = none |
+| `jetblast/blast_clock` | int | Clock position relative to your nose (1–12), 0 = none |
+| `jetblast/push_g` | float | Horizontal push on your aircraft, in g |
+| `jetblast/source_icao` | byte[] | Strongest source's ICAO type, e.g. `B77W` |
+| `jetblast/source_callsign` | byte[] | Strongest source's callsign, e.g. `BAW123` |
+| `jetblast/source_rotor` | int | 1 if the strongest source is a helicopter |
+| `jetblast/sources` | int | Number of aircraft whose blast reaches you |
+| `jetblast/warning` | int | 1 for 5 s after the "Caution, jet blast" warning |
+| `jetblast/enabled` | int | 1 while Jet Blast is switched on |
+| `jetblast/event_mode` | int | 1 while Auto Event mode is active |
+
+Example FlyWithLua script, showing the blast on screen:
+```lua
+dataref("jb_kt", "jetblast/blast_kt")
+dataref("jb_clock", "jetblast/blast_clock")
+function jb_show()
+    if jb_kt > 15 then
+        draw_string(50, 600, string.format("Jet blast %.0f kt from %d o'clock", jb_kt, jb_clock), "red")
+    end
+end
+do_every_draw("jb_show()")
+```
+
 ## Aircraft data
 `jetblast_typedb.csv` holds size, weight, thrust and engine layout for 451 types. Don't edit it; your changes would be replaced by updates. To add or fix a type, put a row in `jetblast_types.csv` instead (the format is explained inside the file). Your rows always win over the database.
 
