@@ -18,7 +18,8 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 - **Jet blast warning:** X-Plane's voice says "Caution, jet blast" and a banner names the aircraft when strong blast reaches you.
 - **VR:** all Jet Blast windows open inside your headset.
 - **Helicopter downwash:** hovering, landing and departing helicopters blow you around with their rotor wash, from a gentle R44 to a Mi-26 hurricane.
-- Blast that hugs the ground, with random gusts.
+- Blast that hugs the ground, with random gusts, and bends downwind in a crosswind.
+- **Near-miss log:** your strongest blast encounters (peak speed, push in g, source, nearest airport) in the debug window and the bug report, and saved to `jetblast_blastlog.csv`.
 - Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots.
 - Settings window inside X-Plane, a one-click bug report, and an update check.
 

@@ -2,6 +2,10 @@
 # One [version] section per release, newest first, "- " for each point.
 # Keep points short: they are word-wrapped in a small window.
 
+[1.9.0]
+- Crosswind bends the blast: in a crosswind, blast from far ahead drifts downwind, so a heavy straight ahead may miss you while one off to the side catches you.
+- Near-miss log: your strongest blast encounters of the session (peak speed, push in g, source, airport) are listed in the debug window and the bug report, and saved to jetblast_blastlog.csv.
+
 [1.8.0]
 - Helicopter downwash: hovering, landing and departing helicopters now blow you around with their rotor downwash, strongest one to two rotor widths away. Marked ROTOR in the debug window; switch it off in Settings.
 - 41 helicopter types added, from the R22 to the Mi-26. Helicopters were treated as small airliners before.
