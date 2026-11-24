@@ -1,4 +1,4 @@
-Jet Blast 1.9.0 beta 2  -  practice mode (beta builds only)
+Jet Blast 1.9.0 beta 3  -  practice mode (beta builds only)
 ==========================================================
 
 Practice mode lets you try jet blast and helicopter downwash offline, with no
@@ -31,7 +31,7 @@ Things to check in this beta
      debug window)? Try it with a small aircraft like the C172.
   3. If you have VR: do the Settings, debug and What's new windows open in
      the headset?
-  4. Anything odd: Plugins > Jet Blast > Copy bug report, and send it.
+  4. Anything odd: Plugins > Jet Blast > Send bug report...
 
 Practice mode is only in beta builds, never in public releases.
 

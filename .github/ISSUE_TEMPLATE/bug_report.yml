@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to report this.
-        **Tip:** right after the problem happens, choose **Plugins ▸ Jet Blast ▸ Copy bug report** in X-Plane, then paste it below. It contains everything needed to look into it (versions, settings, the traffic around you, recent Jet Blast log lines) and nothing personal.
+        **Tip:** right after the problem happens, choose **Plugins ▸ Jet Blast ▸ Send bug report...** in X-Plane (v1.9.0 and newer): it opens this form with the report already filled in. Older versions: **Copy bug report**, then paste it below. It contains everything needed to look into it (versions, settings, the traffic around you, recent Jet Blast log lines) and nothing personal.
 
   - type: textarea
     id: what
@@ -58,7 +58,7 @@ body:
     id: report
     attributes:
       label: Jet Blast bug report
-      description: Paste the text from Plugins ▸ Jet Blast ▸ Copy bug report. (It's also saved as jetblast_bugreport.txt in the Jet Blast plugin folder.)
+      description: Filled in by Plugins ▸ Jet Blast ▸ Send bug report. Older versions - paste the text from Copy bug report. (It's also saved as jetblast_bugreport.txt in the Jet Blast plugin folder.)
       render: text
     validations:
       required: true

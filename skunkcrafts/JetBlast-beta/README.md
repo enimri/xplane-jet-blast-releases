@@ -17,13 +17,13 @@ Jet Blast is published by its author, **enimri**, on GitHub (this page) and on *
 - Jet blast reach calibrated against ICAO published distances (see *Accuracy* below).
 - One-click presets: **Realistic**, **Gentle**, **Event mode** for crowded VATSIM/IVAO events, and **Off**.
 - **Auto Event mode:** switches to Event behaviour by itself when a crowd builds up around you, and back when it clears.
-- **Jet blast warning:** X-Plane's voice says "Caution, jet blast" and a banner names the aircraft when strong blast reaches you.
+- **Jet blast warning:** X-Plane's voice says "Caution, jet blast" and a banner names the aircraft and where the blast comes from ("42 kt from 7 o'clock") when strong blast reaches you.
 - **VR:** all Jet Blast windows open inside your headset.
 - **Helicopter downwash:** hovering, landing and departing helicopters blow you around with their rotor wash, from a gentle R44 to a Mi-26 hurricane.
 - Blast that hugs the ground, with random gusts, and bends downwind in a crosswind.
 - **Near-miss log:** your strongest blast encounters (peak speed, push in g, source, nearest airport) in the debug window and the bug report, and saved to `jetblast_blastlog.csv`.
-- Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots.
-- Settings window inside X-Plane, a one-click bug report, and an update check.
+- Debug window listing every aircraft blowing on you, with its estimated thrust and the blast speed in knots, and where the blast at you comes from ("18 kt from NW").
+- Settings window inside X-Plane, a bug report that fills in the GitHub form for you, and an update check.
 
 ## Install
 1. Download `JetBlast-vX.Y.Z.zip` from [Releases](https://github.com/enimri/xplane-jet-blast-releases/releases).
@@ -104,7 +104,7 @@ The debug window marks these aircraft with **LT**. No setup is needed; turn it o
 
 **Without SkunkCrafts:** when X-Plane starts, Jet Blast asks GitHub once whether a newer version exists. If there is one, the menu changes to **Jet Blast (update available)** and the Settings window shows where to download it. Nothing is installed automatically.
 
-At the same time it downloads the latest **aircraft data** (the type list). A newer list is checked for damage, saved as `jetblast_typedb_latest.csv` and used straight away. That's the only thing updated automatically, and it's only data, never program code.
+At the same time it downloads the latest **aircraft data** (the type list). A newer list is checked for damage, saved as `jetblast_typedb_latest.csv` and used straight away, and the *What's new* window tells you once which types were added. That's the only thing updated automatically, and it's only data, never program code.
 
 Both checks send no personal data; turn them off in Settings or with `check_updates = 0`.
 
@@ -131,7 +131,9 @@ These six match to within about 1 %. All other jets use a curve fitted to these 
 - The macOS and Linux versions are new and have only been build-tested so far. Reports from Mac and Linux users are especially welcome.
 
 ## Problems or ideas?
-Choose **Plugins ▸ Jet Blast ▸ Copy bug report** right after the problem happens. Then **[report the bug here](https://github.com/enimri/xplane-jet-blast-releases/issues/new?template=bug_report.yml)** and paste it into the form, or reply in the forum thread. It contains your Jet Blast version and settings, your aircraft type, the traffic around you and recent Jet Blast log lines. It never includes your name, account, location or files. The same report is also saved as `jetblast_bugreport.txt` in the plugin folder.
+Right after the problem happens, choose **Plugins ▸ Jet Blast ▸ Send bug report...** (or *Send bug report* in Settings). Your browser opens the **[bug report form](https://github.com/enimri/xplane-jet-blast-releases/issues/new?template=bug_report.yml)** with the report and your computer type already filled in: describe what happened and press **Submit**. You need a free GitHub account. You can also reply in the forum thread instead.
+
+The report contains your Jet Blast version and settings, your aircraft type, the traffic around you, your strongest blast encounters and recent Jet Blast log lines. It never includes your name, account, location or files. It's also saved as `jetblast_bugreport.txt` in the plugin folder and copied to the clipboard (*Copy bug report* does only that).
 
 ## License
 Freeware: free to download and use, closed source. Official downloads: this GitHub page and x-plane.to (uploaded by enimri). Jet Blast works with VATSIM, IVAO and LiveTraffic traffic but is not affiliated with or endorsed by them. See [LICENSE.txt](LICENSE.txt). Jet Blast includes LiveTraffic's LTAPI (MIT licence); see `THIRD_PARTY_NOTICES.txt`.
