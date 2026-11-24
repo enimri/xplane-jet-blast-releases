@@ -5,10 +5,14 @@ Copyright (c) 2026 enimri. All rights reserved.
 1. Free use. You may download, install and use Jet Blast free of charge,
    for personal and non-commercial flight simulation.
 
-2. Sharing. You may share the official download link
-   (https://github.com/enimri/xplane-jet-blast-releases). You may not
-   re-upload, sell, bundle or redistribute the plugin files elsewhere
-   without written permission from the author.
+2. Sharing. Jet Blast is officially published by its author, enimri, in
+   these places only:
+     - GitHub: https://github.com/enimri/xplane-jet-blast-releases
+     - x-plane.to: X-Plane Mods, uploaded by the user "enimri"
+     - SkunkCrafts Updater (the JetBlast module)
+   You may share links to these pages. You may not re-upload, sell, bundle
+   or redistribute the plugin files anywhere else without written
+   permission from the author.
 
 3. No modification. You may edit the included settings files
    (jetblast.ini, jetblast_types.csv) for your own use. You may not modify,
