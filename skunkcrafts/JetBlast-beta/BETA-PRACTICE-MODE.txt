@@ -1,4 +1,4 @@
-Jet Blast 1.9.0 beta 1  -  practice mode (beta builds only)
+Jet Blast 1.9.0 beta 2  -  practice mode (beta builds only)
 ==========================================================
 
 Practice mode lets you try jet blast and helicopter downwash offline, with no
@@ -11,7 +11,7 @@ to a key or joystick button in X-Plane's keyboard settings)
 
   Place A320 ahead of me        its tail 40 m in front of your nose
   Place 777 ahead of me         the same with a heavy
-  Place helicopter beside me    a Black Hawk-size helicopter 25 m to your right
+  Place helicopter beside me    a Sikorsky S-76 25 m to your right
 
   Idle                          (helicopter: sits on the ground, rotor turning)
   Breakaway thrust              (helicopter: hovers 4 m up)

@@ -6,6 +6,8 @@ X-Plane 12 already gives this traffic a wake in the air, but nothing comes out o
 
 **[⬇ Download the latest release](https://github.com/enimri/xplane-jet-blast-releases/releases/latest)**
 
+Jet Blast is published by its author, **enimri**, on GitHub (this page) and on **x-plane.to** (X-Plane Mods, uploaded by *enimri*). Both are official; any other upload is not.
+
 ## Features
 - Works with any traffic shown through the TCAS API. X-Plane's own AI aircraft are included too (you can turn that off).
 - Thrust is estimated from each aircraft's motion: idle, breakaway, takeoff, reverse thrust after landing, and engines off when the beacon is off.
@@ -132,4 +134,4 @@ These six match to within about 1 %. All other jets use a curve fitted to these 
 Choose **Plugins ▸ Jet Blast ▸ Copy bug report** right after the problem happens. Then **[report the bug here](https://github.com/enimri/xplane-jet-blast-releases/issues/new?template=bug_report.yml)** and paste it into the form, or reply in the forum thread. It contains your Jet Blast version and settings, your aircraft type, the traffic around you and recent Jet Blast log lines. It never includes your name, account, location or files. The same report is also saved as `jetblast_bugreport.txt` in the plugin folder.
 
 ## License
-Freeware: free to download and use, closed source. See [LICENSE.txt](LICENSE.txt). Jet Blast includes LiveTraffic's LTAPI (MIT licence); see `THIRD_PARTY_NOTICES.txt`.
+Freeware: free to download and use, closed source. Official downloads: this GitHub page and x-plane.to (uploaded by enimri). Jet Blast works with VATSIM, IVAO and LiveTraffic traffic but is not affiliated with or endorsed by them. See [LICENSE.txt](LICENSE.txt). Jet Blast includes LiveTraffic's LTAPI (MIT licence); see `THIRD_PARTY_NOTICES.txt`.
